@@ -1,0 +1,45 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:AlgorithmGUI"
+    xmlns:oxy="http://oxyplot.org/wpf"
+    x:Class="AlgorithmGUI.MainWindow"
+    mc:Ignorable="d"
+    Title="MainWindow" Height="450" Width="800">
+
+    <TabControl TabStripPlacement="Top">
+        <TabItem Name="deviation" Header="Deviations from Target">
+            <Grid>
+                <oxy:PlotView x:Name="deviationGraph"/>
+            </Grid>
+        </TabItem>
+    
+        <TabItem Name="runningTime" Header="Runtime length">
+            <Grid>
+                <oxy:PlotView x:Name="runtimeGraph"/>
+            </Grid>
+        </TabItem>
+        <TabItem Name="dataView" Header="Raw Data">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Content="Export Data" Click="SaveButtonClick"/>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"> 
+                    <DataGrid x:Name="Data"  IsReadOnly="True"/>
+                </ScrollViewer>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Controls">
+            <Grid>
+                <TextBlock x:Name ="TextBoxInfo" TextAlignment="Center" TextWrapping="Wrap" FontSize="18"/>
+            </Grid>
+        </TabItem>
+
+    </TabControl>
+
+
+</Window>

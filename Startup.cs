@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Markup;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AlgorithmGUI
 {
@@ -25,7 +23,7 @@ namespace AlgorithmGUI
                 Console.Clear();
                 Console.Write("Choose an option!" +
                     "\nA) Run all Algorithms sequentially" +
-                    "\nB) Run a single Algorithms once" +
+                    "\nB) Run a single Algorithm once" +
                     $"\nC) Run a single Algorithm ");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write(repeatForXTimes);
@@ -219,6 +217,8 @@ namespace AlgorithmGUI
 
             double[] result = new double[2];
 
+            double iterationDeviation = Math.Abs(S1.Sum() - targetDeviation) + Math.Abs(S2.Sum() - targetDeviation);
+
             //Save the data, unless S1 and S2 are empty.
             if (!S1.Any() && !S2.Any())
             {
@@ -300,7 +300,7 @@ namespace AlgorithmGUI
         }
         public static void QuestionD(int[] S, List<int> S1, List<int> S2)
         {
-            //Adds the first and second values to S1/2
+            //Adds the first and second values to S1/ 2
             S1.Add(S[0]);
             int S1Sum = S[0];
             S2.Add(S[1]);
@@ -322,6 +322,8 @@ namespace AlgorithmGUI
         }
         public static void QuestionE(int[] S, List<int> S1, List<int> S2)
         {
+            //Sort ascending
+            Array.Sort(S);
             for (int i = 0; i < S.Length; i++)
             {
                 if (i % 2 == 0)
@@ -391,7 +393,7 @@ namespace AlgorithmGUI
             double smallestDeviation = double.MaxValue;
 
             //For the sake of not being here all day.
-            if (S.Length > 256) { Console.WriteLine($"🗿 Array size of {SLength} is too large, skipping..."); return; }
+            //if (S.Length > 256) { Console.WriteLine($"🗿 Array size of {SLength} is too large, skipping..."); return; }
 
             //Runs the for loop in parallel while locking access to S1 sequentially.
             Parallel.For(0, SLength, i =>
